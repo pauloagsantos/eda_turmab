@@ -64,6 +64,12 @@ public class Complexo {
     
     public static Complexo dividir(Complexo c1, Complexo c2) { 
         // devolve um número complexo com a divisão de c1 e c2 
+        // (a+bi)/(c+di) = (a+bi)*(c-di) / (c+di)*(c-di)
+        //               = ac-adi+bci+bd / c^2-cdi+cdi+d^2
+        //               = (ac+bd / c^2+d^2) + (bc-ad / c^2+d^2)i
+        Complexo num = multiplicar(c1, conjugado(c2));
+        Complexo den = multiplicar(c2, conjugado(c2));
+        return new Complexo(num.r/den.r, num.i/den.r);
     } 
  
     public static Complexo conjugado(Complexo c) { 
