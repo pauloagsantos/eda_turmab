@@ -70,13 +70,14 @@ public class ComplexoTest {
     @Test
     public void testSomar() {
         System.out.println("somar");
-        Complexo c1 = null;
-        Complexo c2 = null;
-        Complexo expResult = null;
-        Complexo result = Complexo.somar(c1, c2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Complexo c1 = new Complexo(1,1);
+        Complexo c2 = new Complexo(2,2);
+        Complexo r = Complexo.somar(c1, c2);
+        assertEquals(new Complexo(3, 3), r);
+        c1 = new Complexo(1,1);
+        c2 = new Complexo(-2,2);
+        r = Complexo.somar(c1, c2);
+        assertEquals(new Complexo(-1, 3), r);
     }
 
     /**
@@ -85,13 +86,15 @@ public class ComplexoTest {
     @Test
     public void testSubtrair() {
         System.out.println("subtrair");
-        Complexo c1 = null;
-        Complexo c2 = null;
-        Complexo expResult = null;
-        Complexo result = Complexo.subtrair(c1, c2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Complexo c1 = new Complexo(1,1);
+        Complexo c2 = new Complexo(2,2);
+        Complexo r = Complexo.subtrair(c1, c2);
+        assertEquals(new Complexo(-1, -1), r);
+        c1 = new Complexo(1,1);
+        c2 = new Complexo(-2,2);
+        r = Complexo.subtrair(c1, c2);
+        assertEquals(new Complexo(3, -1), r);
+        assertNotEquals(new Complexo(), r);
     }
 
     /**
@@ -100,13 +103,10 @@ public class ComplexoTest {
     @Test
     public void testMultiplicar() {
         System.out.println("multiplicar");
-        Complexo c1 = null;
-        Complexo c2 = null;
-        Complexo expResult = null;
-        Complexo result = Complexo.multiplicar(c1, c2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Complexo c1 = new Complexo(1,2);
+        Complexo c2 = new Complexo(1,2);
+        Complexo r = Complexo.multiplicar(c1, c2);
+        assertEquals(new Complexo(-3, 4), r);
     }
 
     /**
@@ -115,13 +115,10 @@ public class ComplexoTest {
     @Test
     public void testDividir() {
         System.out.println("dividir");
-        Complexo c1 = null;
-        Complexo c2 = null;
-        Complexo expResult = null;
-        Complexo result = Complexo.dividir(c1, c2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Complexo c1 = new Complexo(1,2);
+        Complexo c2 = new Complexo(1,2);
+        Complexo r = Complexo.dividir(c1, c2);
+        assertEquals(new Complexo(1, 0), r);
     }
 
     /**
@@ -130,12 +127,9 @@ public class ComplexoTest {
     @Test
     public void testConjugado() {
         System.out.println("conjugado");
-        Complexo c = null;
-        Complexo expResult = null;
-        Complexo result = Complexo.conjugado(c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Complexo c1 = new Complexo(1,2);
+        Complexo r = Complexo.conjugado(c1);
+        assertEquals(new Complexo(1, -2), r);
     }
 
     /**
@@ -144,41 +138,21 @@ public class ComplexoTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Complexo instance = new Complexo();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("1.0+1.0i", new Complexo(1,1).toString());
+        assertEquals("-1.0+1.0i", new Complexo(-1,1).toString());
+        assertEquals("1.0-1.0i", new Complexo(1,-1).toString());
+        assertEquals("-1.0-1.0i", new Complexo(-1,-1).toString());
     }
 
-    /**
-     * Test of equals method, of class Complexo.
-     */
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        Complexo instance = new Complexo();
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of clone method, of class Complexo.
      */
     @Test
     public void testClone() {
-        System.out.println("clone");
-        Complexo instance = new Complexo();
-        Object expResult = null;
-        Object result = instance.clone();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Complexo c1 = new Complexo(1,1);
+        Complexo c2 = (Complexo)c1.clone();
+        assertEquals(c1, c2);
     }
     
 }
