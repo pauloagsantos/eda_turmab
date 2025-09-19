@@ -12,22 +12,34 @@ public class Complexo {
     
     private double r, i;
     
- public Complexo() { 
-  // cria o seguinte número complexo:  0+0i 
- } 
- public Complexo(double a, double b) { 
-  // cria o seguinte número complexo: a+bi 
- } 
- public double getParteReal() { 
-  // devolve a parte real do complexo 
- } 
+    public Complexo() { 
+        // cria o seguinte número complexo:  0+0i 
+        this(0,0);
+    } 
+    
+    public Complexo(double a, double b) { 
+        // cria o seguinte número complexo: a+bi 
+        this.r = a;
+        this.i = b;
+    }
+
+    public double getParteReal() { 
+        // devolve a parte real do complexo 
+        return r;
+    } 
  
- public double getParteImaginaria() { 
-  // devolve a parte imaginaria do complexo 
- } 
- public static Complexo somar(Complexo c1, Complexo c2) { 
-  // devolve um número complexo com a soma de c1 e c2 
-          }
+    public double getParteImaginaria() { 
+        // devolve a parte imaginaria do complexo 
+        return i;
+    }   
+    
+    public static Complexo somar(Complexo c1, Complexo c2) { 
+        // devolve um número complexo com a soma de c1 e c2 
+        // (a+bi) + (c+di) = (a+c) + (b+d)i
+        double r = c1.r + c2.r;
+        double i = c1.i + c2.i;
+        return new Complexo(r,i);
+    }
     
 public static Complexo subtrair(Complexo c1, Complexo c2) { 
   // devolve um número complexo com a subtracção de c1 e c2 
