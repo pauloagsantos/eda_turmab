@@ -10,11 +10,22 @@ package ficha1;
  */
 public class Ficha1 {
     
-    public static long runXtimes(int value, int x) {
+    public static long runXtimesI(int value, int x) {
         int sum=0;
         for(int i = 0; i < x; i++) {
              long ini = System.nanoTime();
              Matematica.factorialI(value);
+             long fim = System.nanoTime();
+             sum += fim-ini;
+        }
+        return sum/x;
+    }
+    
+    public static long runXtimesR(int value, int x) {
+        int sum=0;
+        for(int i = 0; i < x; i++) {
+             long ini = System.nanoTime();
+             Matematica.factorialR(value);
              long fim = System.nanoTime();
              sum += fim-ini;
         }
@@ -26,7 +37,12 @@ public class Ficha1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println(runXtimes(1000, 10));
+        for(int i = 1000; i <=20000; i+=1000)
+            System.out.println(i+
+                               ":"+
+                               runXtimesI(i, 10)+
+                               ":"+
+                               runXtimesR(i, 10));
     }
     
 }
