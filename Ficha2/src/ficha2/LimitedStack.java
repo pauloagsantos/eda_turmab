@@ -8,6 +8,41 @@ package ficha2;
  *
  * @author IPT
  */
-public class LimitedStack {
+public class LimitedStack implements Stack{
+
+    private Object array[];
+    private int top;
+    
+    public LimitedStack(int maxSize) {
+        array = new Object[maxSize];
+        top = -1;
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return top == -1;    
+    }
+
+    @Override
+    public void push(Object item) {
+        top++;
+        array[top] = item;    
+    }
+
+    @Override
+    public Object pop() {
+        if (isEmpty())
+            return null;
+        else
+            return array[top--];    
+    }
+
+    @Override
+    public Object peek() {
+        if (isEmpty())
+            return null;
+        else
+            return array[top];    
+    }
     
 }
