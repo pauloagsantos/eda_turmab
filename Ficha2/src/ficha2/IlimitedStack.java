@@ -9,25 +9,45 @@ package ficha2;
  * @author IPT
  */
 public class IlimitedStack implements Stack {
+    
+    private Item top;
+    
+    public IlimitedStack() {
+        top = null;
+    }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return top==null;
     }
 
     @Override
     public void push(Object item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Item novo = new Item();
+        novo.data = item;
+        novo.next = top;
+        top = novo;
     }
 
     @Override
     public Object pop() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (isEmpty())
+            return null;
+        Object data = top.data;
+        top = top.next;
+        return data;
     }
 
     @Override
     public Object peek() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (isEmpty())
+            return null;
+        return top.data;
+    }
+    
+    private class Item {
+        Object data;
+        Item next;
     }
     
 }
