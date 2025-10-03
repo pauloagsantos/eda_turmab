@@ -26,7 +26,12 @@ public class LimitedStack implements Stack{
     @Override
     public void push(Object item) {
         top++;
-        array[top] = item;    
+        try {
+            array[top] = item;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            top--;
+            throw e;
+        }
     }
 
     @Override
