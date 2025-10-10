@@ -97,6 +97,24 @@ public class LinkedSingleList implements LinkedList{
             return null;
         return tail.data;
     }
+
+    @Override
+    public String toString() {
+        Item aux = head;
+        StringBuilder sb = new StringBuilder();
+        if (isEmpty())
+            sb.append("null");
+        else {
+            while (aux != null) {
+                sb.append(aux.data);
+                sb.append(" ");
+                aux = aux.next;
+            }         
+        }   
+        return sb.toString().trim();
+    }
+    
+    
     
     private class Item {
         Object data;
