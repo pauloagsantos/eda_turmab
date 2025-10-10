@@ -16,5 +16,5 @@ public interface LinkedList {
     public boolean remove(Object o); 
     public Object peekFirst(); 
     public Object peekLast(); 
-    
+    public int countOcorrences(Object o);
 }

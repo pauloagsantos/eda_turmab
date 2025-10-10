@@ -114,7 +114,18 @@ public class LinkedSingleList implements LinkedList{
         return sb.toString().trim();
     }
     
-    
+    public int countOcorrences(Object o) {
+        int c=0;
+        Item aux = head;
+        while(aux!=null) {
+            if (o.equals(aux.data))
+                c++;
+            aux = aux.next;
+        }
+        return c;
+        
+    }
+   
     
     private class Item {
         Object data;
