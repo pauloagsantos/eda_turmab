@@ -4,6 +4,9 @@
  */
 package ficha4;
 
+import java.util.LinkedList;
+import java.util.Random;
+
 /**
  *
  * @author IPT
@@ -15,39 +18,32 @@ public class Ficha4 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        long ini, end;
+        
+                ini = System.nanoTime();
         BinarySearchTree t = new BinarySearchTree();
-        t.add(5);
-        t.add(3);
-        t.add(2);
-        t.add(4);
-        t.add(7);
-        t.add(6);
-        t.add(8);
-        t.show();
-        System.out.println(t.contains(5));
-        System.out.println(t.contains(3));
-        System.out.println(t.contains(4));
-        System.out.println(t.contains(0));
-        t.remove(6);
-        t.show();
-        t.remove(7);
-        System.out.println("------------------");
-        t.show();
-        t.remove(5);
-        System.out.println("------------------");
-        t.show();
-        
-        t.remove(4);
-        t.remove(8);
-        t.remove(3);
-        t.remove(2);
-        t.show();
-        System.out.println(t.isEmpty());
-              
+        for(int i = 0; i < 1000000; ) {
+            double r = Math.random();
+            if(!t.contains(r)) {
+                t.add(r);
+                i++;
+            }
+        }
+        end = System.nanoTime();      
+        System.out.println("Arvore      :" + (end-ini));
         
         
-        
-        
+        ini = System.nanoTime();
+        LinkedList l = new LinkedList();
+        for(int i = 0; i < 1000000; ) {
+            double r = Math.random();
+            if(!l.contains(r)) {
+                l.addFirst(r);
+                i++;
+            }
+        }
+        end = System.nanoTime();      
+        System.out.println("Lista Ligada:" + (end-ini));
     }
     
 }
