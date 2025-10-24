@@ -9,15 +9,40 @@ package ficha4;
  * @author IPT
  */
 public class BinarySearchTree implements Tree {
+    
+    private Node root;
+    
+    public BinarySearchTree() {
+        root = null;
+    }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return root==null;
     }
 
     @Override
     public void add(Comparable o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Node node = new Node();
+        node.data = o;
+        node.left = null;
+        node.rigth = null;
+        if (root == null)
+            root = node;
+        else
+            add(root, node);    
+    }
+    
+    private void add(Node current, Node node) {
+        if (node.data.compareTo(current.data)<0)
+            if (current.left == null)
+                current.left = node;
+            else
+                add(current.left, node);
+        else if (current.rigth == null)
+            current.rigth = node;
+        else
+            add(current.rigth, node);
     }
 
     @Override
