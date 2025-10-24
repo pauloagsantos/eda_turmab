@@ -24,6 +24,13 @@ public class Ficha4 {
         t.add(6);
         t.add(8);
         t.show();
+        System.out.println(t.contains(5));
+        System.out.println(t.contains(3));
+        System.out.println(t.contains(4));
+        System.out.println(t.contains(0));
+        
+        
+        
     }
     
 }
