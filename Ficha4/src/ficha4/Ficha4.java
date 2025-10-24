@@ -28,6 +28,23 @@ public class Ficha4 {
         System.out.println(t.contains(3));
         System.out.println(t.contains(4));
         System.out.println(t.contains(0));
+        t.remove(6);
+        t.show();
+        t.remove(7);
+        System.out.println("------------------");
+        t.show();
+        t.remove(5);
+        System.out.println("------------------");
+        t.show();
+        
+        t.remove(4);
+        t.remove(8);
+        t.remove(3);
+        t.remove(2);
+        t.show();
+        System.out.println(t.isEmpty());
+              
+        
         
         
         

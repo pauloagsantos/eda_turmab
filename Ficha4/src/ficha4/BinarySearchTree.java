@@ -63,8 +63,86 @@ public class BinarySearchTree implements Tree {
 
     @Override
     public boolean remove(Comparable o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Node nodeToRemove = find(o);
+        if (nodeToRemove == null)
+            return false;
+        else {
+            Node parent = findParent(o);
+            if (root.left == null && root.rigth == null) // árvore apenas com um elemento
+                root = null;
+            else if (root.data.equals(o) && root.left == null && root.rigth != null) 
+                root = root.rigth;
+            else if (root.data.equals(o) && root.left != null && root.rigth == null) 
+                root = root.left;
+            else if (nodeToRemove.left == null && nodeToRemove.rigth == null) // caso 1: Folha
+                if (nodeToRemove.data.compareTo(parent.data)<0)
+                    parent.left = null;
+                else
+                    parent.rigth = null;
+            else if (nodeToRemove.left == null && nodeToRemove.rigth != null) // caso 2.1: Um descendente à direita
+                if (nodeToRemove.data.compareTo(parent.data)<0)
+                    parent.left = nodeToRemove.rigth;
+                else
+                    parent.rigth = nodeToRemove.rigth;
+            else if (nodeToRemove.left != null && nodeToRemove.rigth == null) // caso 2.2: Um descendente à esquerda
+                if (nodeToRemove.data.compareTo(parent.data)<0)
+                    parent.left = nodeToRemove.left;
+                else
+                    parent.rigth = nodeToRemove.left;
+            else { // caso 3: Dois descendentes
+                Node majorNode = nodeToRemove.left;
+                while (majorNode.rigth != null)
+                    majorNode = majorNode.rigth;
+                Node parentMajorNode = findParent(majorNode.data);
+                if (parentMajorNode == nodeToRemove)
+                    parentMajorNode.left = majorNode.left;
+                else
+                    parentMajorNode.rigth = majorNode.left;
+                nodeToRemove.data = majorNode.data;
+            }
+            return true;
+        }
     }
+    
+    private Node findParent(Comparable o) {
+        return findParent(root, o);
+    }
+ 
+    private Node findParent(Node current, Comparable o) {
+        if (o.equals(current.data))
+            return null;
+        else {
+            if (o.compareTo(current.data)<0)
+                if (current.left == null)
+                    return null;
+                else if (current.left.data.equals(o))
+                    return current;
+                else
+                    return findParent(current.left, o);
+            else if (current.rigth == null)
+                return null;
+            else if (current.rigth.data.equals(o))
+                return current;
+            else
+                return findParent(current.rigth, o);
+        }
+    }
+    
+    private Node find(Comparable o) {
+        return find(root, o);
+    }
+    
+    private Node find(Node current, Comparable o) {
+        if (current == null)
+            return null;
+        else if (current.data.equals(o))
+            return current;
+        else if (o.compareTo(current.data)<0)
+            return find(current.left, o);
+        else
+            return find(current.rigth, o);
+    }
+    
 
     @Override
     public Comparable findMin() {
