@@ -104,7 +104,7 @@ public class AVLTree extends BinarySearchTree {
                 pilha.push(nodeToRemove.left);
             } else { // caso 3: dois descendentes
                 Node majorNode = nodeToRemove.left;
-                Node parentMajorNode = majorNode;
+                Node parentMajorNode = nodeToRemove;
                 while (majorNode.right != null) {
                     parentMajorNode = majorNode;
                     majorNode = majorNode.right;
