@@ -14,32 +14,24 @@ public class Ficha6 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AVLTree t = new AVLTree();
-        t.add(9);
-        t.add(15);
-        t.add(21);
-        t.add(25);
-        t.add(27);
+        long ini, end;
         
-        t.add(4);
-        t.add(6);
-        t.add(8);
-        t.add(10);
-        t.add(12);
+        ini = System.nanoTime();
+        BinarySearchTree t1 = new BinarySearchTree();
+        for(int i = 0; i < 1000000; i++)
+            t1.add(Math.random());
+        end = System.nanoTime();
         
-        t.add(1);
-        t.add(2);
-        t.add(3);
-        t.add(5);
-        t.add(7);
+        System.out.println("BST:" + (end-ini));
         
-
+        ini = System.nanoTime();
+        AVLTree t2 = new AVLTree();
+        for(int i = 0; i < 1000000; i++)
+            t2.add(Math.random());
+        end = System.nanoTime();
         
-        t.remove(3); 
-        t.remove(6);
-        t.remove(9);
-    
-        t.show();
+        System.out.println("AVL:" + (end-ini));
+        
     }
     
 }
