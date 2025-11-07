@@ -22,23 +22,23 @@ public class AVLTree extends BinarySearchTree {
         if (root == null)
             root = node;
         else
-            add(root, node);    
+            root = add(root, node);    
     }
     
-    private void add(Node current, Node node) {
+    private Node add(Node current, Node node) {
         if (node.data.compareTo(current.data)<0)
             if (current.left == null)
                 current.left = node;
             else
-                add(current.left, node);
+                current.left =  add(current.left, node);
         else if (current.right == null)
             current.right = node;
         else
-            add(current.right, node);   
-         balance(current);
+            current.right = add(current.right, node);   
+        return balance(current);
     }
     
-    private void balance(Node nodo) {
+    private Node balance(Node nodo) {
         ((NodeAVL)nodo).height = Math.max(height(nodo.left), height(nodo.right) ) + 1;
         if (factor(nodo) > 1)
             if (factor(nodo.left) >= 0)
@@ -50,6 +50,7 @@ public class AVLTree extends BinarySearchTree {
                 nodo = leftRotation(nodo);
             else
                 nodo = doubleLeftRotation(nodo);
+        return nodo;
     }
     
     @Override
