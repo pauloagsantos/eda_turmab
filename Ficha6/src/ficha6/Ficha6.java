@@ -14,7 +14,12 @@ public class Ficha6 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        AVLTree t = new AVLTree();
+        t.add(4);
+        t.add(5);
+        t.add(6);
+        
+        t.show();
     }
     
 }
