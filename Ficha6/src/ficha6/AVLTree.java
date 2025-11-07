@@ -71,13 +71,18 @@ public class AVLTree extends BinarySearchTree {
         if (nodeToRemove == null)
             return false;
         else {
-            if (root.left == null && root.right == null) // apenas um elemento
+            if (root.left == null && root.right == null) { // apenas um elemento
                 root = null;
-            else if (root.data.equals(o) && root.left == null && root.right != null)
+                pilha.pop();
+            } else if (root.data.equals(o) && root.left == null && root.right != null) {
                 root = root.right;
-            else if (root.data.equals(o) && root.left != null && root.right == null)
+                pilha.pop();
+                pilha.push(root.right);
+            } else if (root.data.equals(o) && root.left != null && root.right == null) {
                 root = root.left;
-            else if (nodeToRemove.left == null && nodeToRemove.right == null) { // caso 1: folha
+                pilha.pop();
+                pilha.push(root.left);
+            } else if (nodeToRemove.left == null && nodeToRemove.right == null) { // caso 1: folha
                 if (nodeToRemove.data.compareTo(parent.data)<0)
                     parent.left = null;
                 else
@@ -112,7 +117,9 @@ public class AVLTree extends BinarySearchTree {
             }
             while (!pilha.empty()) {
                 Node nodo = pilha.pop();
-                Node pai = pilha.peek();
+                Node pai = null;
+                if (!pilha.empty())
+                    pai = pilha.peek();
                 if (pai == null)
                     root = balance(nodo);
                 else if (nodo.data.compareTo(pai.data)<0)
