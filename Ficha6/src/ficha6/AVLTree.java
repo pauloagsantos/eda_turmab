@@ -77,22 +77,27 @@ public class AVLTree extends BinarySearchTree {
                 root = root.right;
             else if (root.data.equals(o) && root.left != null && root.right == null)
                 root = root.left;
-            else if (nodeToRemove.left == null && nodeToRemove.right == null) // caso 1: folha
+            else if (nodeToRemove.left == null && nodeToRemove.right == null) { // caso 1: folha
                 if (nodeToRemove.data.compareTo(parent.data)<0)
                     parent.left = null;
                 else
                     parent.right = null;
-            else if (nodeToRemove.left == null && nodeToRemove.right != null) // caso 2.1: apenas um descendente à direita
+                pilha.pop();
+            } else if (nodeToRemove.left == null && nodeToRemove.right != null) { // caso 2.1: apenas um descendente à direita
                 if (nodeToRemove.data.compareTo(parent.data)<0)
                     parent.left = nodeToRemove.right;
                 else
                     parent.right = nodeToRemove.right;
-            else if (nodeToRemove.left != null && nodeToRemove.right == null) // caso 2.2: apenas um descendente à esquerda
+                pilha.pop();
+                pilha.push(nodeToRemove.right);
+            } else if (nodeToRemove.left != null && nodeToRemove.right == null) { // caso 2.2: apenas um descendente à esquerda
                 if (nodeToRemove.data.compareTo(parent.data)<0)
                     parent.left = nodeToRemove.left;
                 else
                     parent.right = nodeToRemove.left;
-            else { // caso 3: dois descendentes
+                pilha.pop();
+                pilha.push(nodeToRemove.left);
+            } else { // caso 3: dois descendentes
                 Node majorNode = nodeToRemove.left;
                 Node parentMajorNode = majorNode;
                 while (majorNode.right != null) {
@@ -105,8 +110,16 @@ public class AVLTree extends BinarySearchTree {
                     parentMajorNode.right = majorNode.left;
                 nodeToRemove.data = majorNode.data;
             }
-            while (!pilha.empty())
-                balance( pilha.pop() );
+            while (!pilha.empty()) {
+                Node nodo = pilha.pop();
+                Node pai = pilha.peek();
+                if (pai == null)
+                    root = balance(nodo);
+                else if (nodo.data.compareTo(pai.data)<0)
+                    pai.left = balance(nodo);
+                else
+                    pai.right = balance(nodo);
+            }
             
             return true;
         }
