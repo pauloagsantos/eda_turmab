@@ -136,4 +136,38 @@ public class BinarySearchTreeTest {
         assertEquals(8, t.findMax());
     }
     
+    @Test
+    public void testIsLeaf() {
+        BinarySearchTree t = new BinarySearchTree();
+        t.add(5);
+        t.add(3);
+        t.add(2);
+        t.add(4);
+        t.add(6);
+        t.add(7);
+        assertEquals(false, t.isLeaf(5));
+        assertEquals(false, t.isLeaf(3));
+        assertEquals(true, t.isLeaf(2));
+        assertEquals(true, t.isLeaf(4));
+        assertEquals(false, t.isLeaf(6));
+        assertEquals(true, t.isLeaf(7));
+    }
+    
+    @Test
+    public void testIsUnique() {
+        BinarySearchTree t = new BinarySearchTree();
+        t.add(5);
+        t.add(3);
+        t.add(2);
+        t.add(4);
+        t.add(6);
+        t.add(7);
+        t.add(3);
+        assertEquals(true, t.isUnique(5));
+        assertEquals(false, t.isUnique(3));
+        assertEquals(true, t.isUnique(2));
+        assertEquals(true, t.isUnique(4));
+        assertEquals(true, t.isUnique(6));
+        assertEquals(true, t.isUnique(7));
+    }
 }

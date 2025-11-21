@@ -190,6 +190,36 @@ public class BinarySearchTree implements Tree {
         } 
     }
     
+    public boolean isLeaf(Comparable o) {
+        return isLeaf(root, o);
+    }
+    
+    private boolean isLeaf(Node current, Comparable o) {
+        if (current == null)
+            return false;
+        else if (current.data.equals(o))
+            return current.left == null && current.rigth == null;
+        else if (o.compareTo(current.data)<0)
+            return isLeaf(current.left, o);
+        else
+            return isLeaf(current.rigth, o);
+    }
+    
+    public boolean isUnique(Comparable o) {
+        return isUnique(root, o);
+    }
+    
+    private boolean isUnique(Node current, Comparable o) {
+        if (current == null)
+            return false;
+        else if (current.data.equals(o))
+            return !contains(current.rigth, o);
+        else if (o.compareTo(current.data)<0)
+            return isUnique(current.left, o);
+        else
+            return isUnique(current.rigth, o);
+    }
+    
     
     private class Node {
         Comparable data;
