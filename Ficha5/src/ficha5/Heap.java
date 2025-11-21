@@ -4,6 +4,7 @@
  */
 package ficha5;
 
+import java.util.Arrays;
 import javax.swing.ComboBoxEditor;
 
 /**
@@ -14,6 +15,7 @@ public abstract class Heap {
     
     protected Comparable array[];
     protected int count;
+    
     
     public Heap(int maxSize) {
         array = new Comparable[maxSize];
@@ -28,8 +30,14 @@ public abstract class Heap {
         return isEmpty()?null:array[0];
     }
     
-    public abstract void add(Comparable o);             
+    public void add(Comparable o) {
+        array[count] = o;
+        count = count + 1;
+        reorganiza();
+    }             
 
+    protected abstract void reorganiza();
+    
     public abstract boolean contains(Comparable o); 
     
     public abstract boolean remove(Comparable o);   
@@ -45,4 +53,18 @@ public abstract class Heap {
     protected int parent(int index) {
         return (index-1)/2;
     }
+    
+    protected void troca(int i, int j) {
+        Comparable aux = array[i];
+        array[i] = array[j];
+        array[j] = aux;
+    }
+
+    @Override
+    public String toString() {
+        return "Heap{" + "array=" + Arrays.asList(array) + ", count=" + count + '}';
+    }
+    
+    
+    
 }

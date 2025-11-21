@@ -14,7 +14,13 @@ public class Ficha5 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        HeapMin h1 = new HeapMin(10);
+        h1.add(4);
+        h1.add(5);
+        h1.add(6);
+        h1.add(7);
+        h1.add(1);
+        System.out.println(h1);
     }
     
 }
