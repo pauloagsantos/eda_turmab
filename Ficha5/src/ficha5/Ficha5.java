@@ -21,6 +21,13 @@ public class Ficha5 {
         h1.add(7);
         h1.add(1);
         System.out.println(h1);
+        
+
+        
+        
+        System.out.println(h1.findIndex(5));
+        System.out.println(h1.findIndex(2));
+        
     }
     
 }
