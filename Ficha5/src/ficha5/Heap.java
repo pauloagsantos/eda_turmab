@@ -45,6 +45,13 @@ public abstract class Heap {
         return i < count;
     } 
     
+    public int findIndex(Comparable o) {
+        int i = 0;
+        while (i < count && !array[i].equals(o))
+            i = i + 1;
+        return i < count?i:-1;
+    } 
+    
     public abstract boolean containsOptimizado(Comparable o); 
     
     public abstract boolean remove(Comparable o);   
